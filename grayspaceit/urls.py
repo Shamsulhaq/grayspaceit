@@ -25,11 +25,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', RedirectView.as_view(url='/authentication')),
     path('auth/', include('authentication.urls')),
-    path('accounts/', include('authentication.password.urls')),
-    path('posts/', include('posts.urls')),
+    path('auth/', include('authentication.password.urls')),
     path('profiles/', RedirectView.as_view(url='/profile')),
     path('profile/', include('profiles.urls'), name='profile'),
-    path('', posts),
+    path('posts/', include('posts.urls')),
+    path('', posts, name='home'),
 ]
 
 if settings.DEBUG:
