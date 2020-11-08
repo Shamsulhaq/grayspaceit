@@ -25,11 +25,25 @@ SECRET_KEY = 'q6gt_q-os$#+1^(%kl0a!y)gg9#nbj3c56)3i8e)p=tr9=*@q)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '*']
 
+
+# SMTP GMAIL Settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pakijadjangoproject@gmail.com'
+EMAIL_HOST_PASSWORD = 'a$$4u1tpakija'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Gray Spaceit | Test Blog (pakijadjangoproject@gmail.com)'
+BASE_URL = '127.0.0.1:8000'
+
+MANAGERS = [
+    ('LMS', 'pakijadjangoproject@gmail.com'),
+]
+
+ADMINS = MANAGERS
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +52,28 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+THIRD_PARTY_APPS = [
+
+]
+
+LOCAL_APPS = [
+    'authentication'
+]
+
+INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
+
+# Custom User Auth
+AUTH_USER_MODEL = 'authentication.User'
+# User session manage
+FORCE_SESSION_TO_ONE = False
+FORCE_INACTIVE_END_SESSION = False
+
+# Login and Logout
+LOGIN_URL = '/auth/login/'
+LOGIN_URL_REDIRECT = '/'
+LOGOUT_URL = '/logout/'
+LOGOUT_URL_REDIRECT = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

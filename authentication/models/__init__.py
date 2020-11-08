@@ -1,2 +1,2 @@
-from accounts.models.user_models import User
-from accounts.models.email_activation import EmailActivation
+from authentication.models.user_models import User
+from authentication.models.email_activation import EmailActivation

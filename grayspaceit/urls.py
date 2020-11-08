@@ -19,9 +19,20 @@ from django.conf.urls.static import static
 from django.conf import settings
 from posts.views import posts
 
+from django.views.generic import RedirectView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', RedirectView.as_view(url='/authentication')),
     path('auth/', include('authentication.urls')),
+    path('accounts/', include('authentication.password.urls')),
     path('posts/', include('posts.urls')),
+    path('profiles/', RedirectView.as_view(url='/profile')),
+    path('profile/', include('profiles.urls'), name='profile'),
     path('', posts),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

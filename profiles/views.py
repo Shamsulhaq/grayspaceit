@@ -2,8 +2,8 @@ from django.shortcuts import render, reverse
 from django.views.generic import UpdateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from accounts.forms import UserInfoChangeForm
-from accounts.models import User
+from authentication.forms import UserInfoChangeForm
+from authentication.models import User
 
 
 # Create your views here.
