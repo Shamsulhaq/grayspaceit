@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,11 +55,12 @@ INSTALLED_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-
+    'widget_tweaks',
 ]
 
 LOCAL_APPS = [
-    'authentication'
+    'authentication',
+    'profiles'
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
@@ -150,6 +152,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+# Message framework
+MESSAGE_TAGS = {
+    messages.INFO: 'alert alert-info',
+    messages.SUCCESS: 'alert alert-success',
+    messages.WARNING: 'alert alert-warning',
+    messages.ERROR: 'alert alert-danger',
+    messages.DEBUG: 'alert alert-info',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

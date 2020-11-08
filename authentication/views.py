@@ -35,7 +35,7 @@ class UserLoginView(NextUrlMixin, RequestFormAttachMixin, FormView):
     form_class = UserLoginForm
     success_url = '/profile/'
     default_next = '/profile/'
-    template_name = 'accounts/login.html'
+    template_name = 'authentication/login.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -55,9 +55,9 @@ class UserLoginView(NextUrlMixin, RequestFormAttachMixin, FormView):
 
 class UserRegistrationView(SuccessMessageMixin, CreateView):
     form_class = UserRegistrationForm
-    template_name = 'accounts/register.html'
+    template_name = 'authentication/register.html'
     success_message = 'Registration successful. We send activation instruction on your email.'
-    success_url = '/account/login/'
+    success_url = '/authentication/login/'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -72,7 +72,7 @@ class UserRegistrationView(SuccessMessageMixin, CreateView):
 
 
 class AccountEmailActivateView(FormMixin, View):
-    success_url = '/account/login/'
+    success_url = '/authentication/login/'
     form_class = ReactivateEmailFrom
     key = None
 
@@ -127,4 +127,4 @@ class AccountEmailActivateView(FormMixin, View):
 
 def get_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('/')
