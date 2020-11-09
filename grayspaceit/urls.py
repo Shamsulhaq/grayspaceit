@@ -20,6 +20,7 @@ from django.conf import settings
 from posts.views import posts
 
 from django.views.generic import RedirectView
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +33,7 @@ urlpatterns = [
     path('', posts, name='home'),
 
     # user authentication api
+    path('api-token-auth/', obtain_jwt_token),
     path('api/auth/', include('authentication.api.urls')),
     path('api/user/', include('authentication.api.user.urls'))
 ]
@@ -39,4 +41,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
