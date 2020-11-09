@@ -11,8 +11,8 @@ def posts(request):
 
 # POST DETAILS VIEW ENDPOINT
 def post_details(request, id):
-    response = requests.get('https://jsonplaceholder.typicode.com/posts/').json()
-    comments = requests.get('https://jsonplaceholder.typicode.com/posts/1/comments').json()
+    response = requests.get('https://jsonplaceholder.typicode.com/posts/{}'.format(id)).json()
+    comments = requests.get('https://jsonplaceholder.typicode.com/posts/{}/comments'.format(id)).json()
     context = {
         'response': response,
         'comments': comments
