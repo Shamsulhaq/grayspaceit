@@ -10,5 +10,11 @@ def posts(request):
 
 
 # POST DETAILS VIEW ENDPOINT
-def post_details(request):
-    return render(request, 'blog-post.html')
+def post_details(request, id):
+    response = requests.get('https://jsonplaceholder.typicode.com/posts/').json()
+    comments = requests.get('https://jsonplaceholder.typicode.com/posts/1/comments').json()
+    context = {
+        'response': response,
+        'comments': comments
+    }
+    return render(request, 'blog-post.html', context)
