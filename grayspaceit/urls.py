@@ -30,6 +30,10 @@ urlpatterns = [
     path('profile/', include('profiles.urls'), name='profile'),
     path('posts/', include('posts.urls')),
     path('', posts, name='home'),
+
+    # user authentication api
+    path('api/auth/', include('authentication.api.urls')),
+    path('api/user/', include('authentication.api.user.urls'))
 ]
 
 if settings.DEBUG:

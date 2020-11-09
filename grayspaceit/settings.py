@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+
+# REST FRAMEWORK PERMISSION
+from grayspaceit.restconf.main import *
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -56,6 +60,8 @@ INSTALLED_APPS = [
 
 THIRD_PARTY_APPS = [
     'widget_tweaks',
+    'rest_framework',
+    'rest_framework_jwt'
 ]
 
 LOCAL_APPS = [

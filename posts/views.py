@@ -15,12 +15,15 @@ def posts(request):
         response = paginator.page(1)
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
-
+    # for p in paginator:
+    #     print(p)
+    # print(paginator.num_pages)
+    # print(response)
     template_name = 'blog-listing.html'
     context = {
         'response': response
     }
-    print(context)
+    # print(context)
     return render(request, template_name, context)
 
 
