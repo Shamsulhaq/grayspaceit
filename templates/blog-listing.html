@@ -18,27 +18,26 @@
 
         <!-- Blog Post -->
         {% for context in response %}
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <a href="#">
-                            <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <h2 class="card-title">{{ context.title }}</h2>
-                        <p class="card-text">{{ context.body }}</p>
-                        <a href="{% url 'post-details' context.id %}" class="btn btn-primary">Read More &rarr;</a>
-{#                        <a href="https://jsonplaceholder.typicode.com/posts/{{ context.id }}" class="btn btn-primary">Read More &rarr;</a>#}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="#">
+                                <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <h2 class="card-title">{{ context.title }}</h2>
+                            <p class="card-text">{{ context.body }}</p>
+                            <a href="{% url 'post-details' context.id %}" class="btn btn-primary">Read More &rarr;</a>
+                        </div>
                     </div>
                 </div>
+                <div class="card-footer text-muted">
+                    Posted on January 1, 2017 by
+                    <a href="#">{{ context.userId }}</a>
+                </div>
             </div>
-            <div class="card-footer text-muted">
-                Posted on January 1, 2017 by
-                <a href="#">{{ context.userId }}</a>
-            </div>
-        </div>
         {% endfor %}
 
         <!-- Pagination -->
@@ -51,6 +50,26 @@
             </li>
         </ul>
 
+        {% if is_paginated %}
+            <ul class="pagination justify-content-center mb-4">
+                <li class="page-item">
+                    {% if page_obj.has_previous %}
+                        <a class="page-link" href="{% url 'post' %}?page={{ page_obj.previous_page_number }}">&larr; Older</a>
+                    {% endif %}
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Page 1">
+                        <span>{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    {% if page_obj.has_next %}
+                        <a class="page-link" href="{% url 'post' %}?page={{ page_obj.next_page_number }}">Newer &rarr;</a>
+                    {% endif %}
+                </li>
+            </ul>
+        {% endif %}
     </div>
     <!-- /.container -->
 {% endblock container %}
